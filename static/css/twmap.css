@@ -1,0 +1,55 @@
+*{
+	border: 0px solid #333;
+}
+html,body{
+	background-color: #33A6B8;
+}
+.now{
+	border: 3px solid #fff;
+	box-sizing: border-box;
+}
+.colors{
+	position: fixed;
+}
+.color{
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	margin: 10px;
+  cousor: pointer;
+}
+.twt-map-name,.twt-map-name-1{
+	position: absolute;
+	color: #fff;
+	pointer-events: none;
+}
+.twt-map-name{
+	font-size: 3vw;
+}
+.twt-map-name-1{
+	font-size: 2vw;
+}
+.twt-map-path{
+	position: absolute;
+	fill: rgb(227, 185, 44);;
+}
+#keelung,#taipei{fill: rgb(227, 185, 44);}
+#hsinchucity,#taichungcity,#chiayicity,#tainancity,#kaohsiungcity{fill: green;display: none;}
+
+#name-keelung{top:12vw;left:79.5vw;}
+#name-taipei{top:13vw;left:72vw;}
+#name-newtaipei{top:22vw;left:70vw;}
+#name-taoyuan{top:20vw;left:54vw;}
+#name-hsinchu{top:31vw;left:50vw;}
+#name-miaoli{top:42vw;left:42vw;}
+#name-taichung{top:56vw;left:40vw;}
+#name-changhua{top:70vw;left:20vw;}
+#name-nantou{top:75vw;left:45vw;}
+#name-yunlin{top:81vw;left:17vw;}
+#name-chiayi{top:94vw;left:30vw;}
+#name-tainan{top:108vw;left:16vw;}
+#name-kaohsiung{top:112vw;left:36vw;}
+#name-pingtung{top:135vw;left:33vw;}
+#name-yilan{top:38vw;left:75vw;}
+#name-hualien{top:72vw;left:68vw;}
+#name-taitung{top:120vw;left:54vw;}
