@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Stellar by HTML5 UP</title>
+		<title>勞有所依 LYSI</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
@@ -66,10 +66,7 @@
 
 								<div class="colors">
 									<div class="color now" style="background: #901E2E;"></div>
-									<div class="color" style="background: #0B346E;"></div>
-									<div class="color" style="background: #1B813E;"></div>
-									<div class="color" style="background: #B5495B;"></div>
-								   <div class="color" style="background: #e3b92c;" id="none"></div>
+								   	<!-- <div class="color" style="background: #e3b92c;" id="none"></div> -->
 								</div>
 								<div class="center1">
 									<!-- <div id="name-taipei" class="twt-map-name-1">台北</div>
@@ -135,10 +132,10 @@
 									</li>
 								</ul> -->
 
-
-								<footer class="major">
+								<footer class="major" id="none">
 									<ul class="actions special">
-										<li><a href="generic.html" class="button">Learn More</a></li>
+										<li><a id="none" class="button">Reset</a></li>
+										<li><a href="{{ url_for('elements') }}" class="button primary">Confirm</a></li>
 									</ul>
 								</footer>
 							</section>

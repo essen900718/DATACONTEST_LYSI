@@ -1,15 +1,13 @@
 *{
 	border: 0px solid #333;
 }
-html,body{
-	background-color: #33A6B8;
-}
+
 .now{
 	border: 3px solid #fff;
 	box-sizing: border-box;
 }
 .colors{
-	position: fixed;
+	display: none;
 }
 .color{
 	width: 40px;

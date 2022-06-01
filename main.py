@@ -14,5 +14,13 @@ def generic():
 def elements():
     return render_template("elements.html")
 
+@app.route("/type")
+def type():
+    return render_template("type.html")
+
+@app.route("/location")
+def location():
+    return render_template("location.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

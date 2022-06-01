@@ -23,11 +23,20 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	
 	vertical-align: baseline;}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;}
+	display: block;
+}
+
+.outer {
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
 
 body {
 	line-height: 1;
@@ -3412,7 +3421,7 @@ input, select, textarea {
 			#main input[type="button"].primary,
 			#main button.primary,
 			#main .button.primary {
-				background-color: #8cc9f0;
+				background-color: #901E2E;
 				color: #ffffff !important;
 				box-shadow: none;
 			}
@@ -3422,7 +3431,7 @@ input, select, textarea {
 				#main input[type="button"].primary:hover,
 				#main button.primary:hover,
 				#main .button.primary:hover {
-					background-color: #9acff2;
+					background-color: #af5460;
 				}
 
 				#main input[type="submit"].primary:active,
@@ -3430,7 +3439,7 @@ input, select, textarea {
 				#main input[type="button"].primary:active,
 				#main button.primary:active,
 				#main .button.primary:active {
-					background-color: #7ec3ee;
+					background-color: #af5460;
 				}
 
 				#main input[type="submit"].primary.icon:before,
@@ -3706,6 +3715,7 @@ input, select, textarea {
 			margin: 2.5em 0 2em 0;
 			font-size: 0.8em;
 			text-align: center;
+			color: #636363;
 		}
 
 		@media screen and (max-width: 1280px) {
