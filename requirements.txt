@@ -1,6 +1,6 @@
 flask
 gunicorn
-csv
+python-csv
 hashlib
 pandas
 Path
