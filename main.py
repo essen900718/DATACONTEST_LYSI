@@ -88,12 +88,15 @@ def job1():
     myData = data.values
     return render_template("job1.html")
 
-@app.route("/jobone")
-def jobone():
+@app.route("/jobone/<index>")
+def jobone(index):
+    print(index)
+    id = int(index)
     filename = 'job_test.csv'
     data = pandas.read_csv(filename, header=0)
-    myData = data.values[0]
+    myData = data.values[id]
     return render_template("job_test.html", myData=myData)
+    
 
 @app.route("/job2")
 def job2():
