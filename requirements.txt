@@ -1,2 +1,6 @@
 flask
 gunicorn
+csv
+hashlib
+pandas
+Path
