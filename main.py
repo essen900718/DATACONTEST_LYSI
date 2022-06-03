@@ -1,6 +1,5 @@
 from flask import Flask, render_template
-import csv
-import flask, pandas
+import pandas
 
 app = Flask(__name__)
 
