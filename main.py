@@ -22,5 +22,13 @@ def type():
 def location():
     return render_template("location.html")
 
+@app.route("/job1")
+def job1():
+    return render_template("job1.html")
+
+@app.route("/job2")
+def job2():
+    return render_template("job2.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
