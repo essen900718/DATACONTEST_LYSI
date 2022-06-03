@@ -10,7 +10,7 @@ def jobone(index):
     filename = 'job_test.csv'
     data = pandas.read_csv(filename, header=0)
     myData = data.values[id]
-    return render_template("job_test.html", myData=myData)
+    return render_template("job_test.html", myData=myData,id=id+1)
 
 @app.route("/")
 def index():
