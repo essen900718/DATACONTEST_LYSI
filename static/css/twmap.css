@@ -29,7 +29,7 @@
 }
 .twt-map-path{
 	position: absolute;
-	fill: rgb(227, 185, 44);;
+	fill: rgb(227, 185, 44);
 }
 #keelung,#taipei{fill: rgb(227, 185, 44);}
 #hsinchucity,#taichungcity,#chiayicity,#tainancity,#kaohsiungcity{fill: green;display: none;}
