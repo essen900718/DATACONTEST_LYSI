@@ -3,7 +3,7 @@ import pandas
 import joblib
 
 app = Flask(__name__)
-loaded_model = joblib.load('Feature_model')
+loaded_model = joblib.load('forest_knowledge_model')
 
 @app.route("/jobone/<index>")
 def jobone(index):
