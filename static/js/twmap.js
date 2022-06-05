@@ -104,9 +104,9 @@ function reset() {
 // id="pingtung"
 //loc = document.getElementById("pingtung");
 $(function(){
-  $("#none").click(function(){
-    location.reload();
-  });
+//   $("#none").click(function(){
+//     location.reload();
+//   });
 	$(".twt-map-path").click(
 		function(){
 			var select = document.getElementById("selectLocation")

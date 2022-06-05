@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request,redirect,url_for
 import pandas
 import joblib
 
@@ -30,9 +30,18 @@ def elements():
 def type():
     return render_template("type.html")
 
-@app.route("/location")
+# @app.route("/type1/<string:location>")
+# def type1(location):
+#     return render_template("type1.html")
+#     return f'{location}'
+
+@app.route('/location',methods=['POST','GET'])
 def location():
-    return render_template("location.html")
+    #request_method = request.method
+    if request.method == "POST":
+        location = request.form['location']
+        return redirect(url_for('type',location = location))
+    return render_template('location.html')
 
 @app.route("/job2")
 def job2():
