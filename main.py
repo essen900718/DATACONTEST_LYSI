@@ -127,24 +127,27 @@ def question(index):
     id = int(index)
     filename = 'question.xlsx'
     question = pandas.read_excel(filename, header=0)
-    myData = question.values[id]
     global result_name, data
+    if id == 27:
+        print("data",type(data),data)
+        for i in knowledge:
+            if len(knowledge[i]) > 1:
+                knowledge[i] = [knowledge[i][0]]
+            elif len(knowledge[i]) < 1:
+                knowledge[i] = [1]
+        dataframe = DataFrame(knowledge)
+        result = loaded_model.predict(dataframe)
+        result_name = str(result)[1:-1]
+        filename = result_name+'.xlsx'
+        data = read_file(filename)
+        # print("type",type(data),data)
+        return redirect(url_for('jobone',index = 0))
+    myData = question.values[id]
     if request.method == "POST":
         knowledge[myData[0]].append(request.form['feature'])
-        print(myData[0],knowledge[myData[0]])
-        if id == 26:
-            for i in knowledge:
-                if len(knowledge[i]) > 1:
-                    knowledge[i] = [knowledge[i][0]]
-                elif len(knowledge[i]) < 1:
-                    knowledge[i] = [1]
-            dataframe = DataFrame(knowledge)
-            result = loaded_model.predict(dataframe)
-            result_name = str(result)[1:-1]
-            filename = result_name+'.xlsx'
-            data = read_file(filename)
-            print("type",type(data),data)
-            return redirect(url_for('jobone',index = 0))
+        # print(myData[0],knowledge[myData[0]])
+        print(id)
+        knowledge[myData[0]].append(request.form['feature'])
     return render_template("question.html", myData=myData,id=id)
 
 @app.route("/job2")
