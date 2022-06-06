@@ -68,9 +68,11 @@ def read_file(filename):
 #     knowledge[i].append(a)
 # dataframe = DataFrame(knowledge)
 # result = loaded_model.predict(dataframe)
+
 app = Flask(__name__)
 @app.route("/jobone/<index>")
 def jobone(index):
+    global data
     print(index)
     id = int(index)
     myData = data.values[id]
@@ -90,34 +92,29 @@ def elements():
 
 # @app.route("/type",methods=['POST','GET'])
 # def type():
+#     global loc
+#     if request.method == "GET":
+#         loc = request.url.split('=')[1]
+#         print("location",loc)
 #     return render_template("type.html")
 
-@app.route("/type",methods=['POST','GET'])
-def type():
+@app.route("/type1",methods=['POST','GET'])
+def type1():
     global loc
     if request.method == "GET":
         loc = request.url.split('=')[1]
         print("location",loc)
-    return render_template("type.html")
+    return render_template("type1.html")
 
 @app.route("/select")
 def select():
     return render_template("select.html")
 
-# @app.route("/type1/<string:location>")
-# def type1(location):
-#     return render_template("type1.html")
-#     return f'{location}'
-
 @app.route('/location',methods=['POST','GET'])
 def location():
-    #request_method = request.method
-    # global loc
     if request.method == "POST":
         location = request.form['location']
-        # loc = request.form['location']
-        # print("location",loc)
-        return redirect(url_for('type',location = location))
+        return redirect(url_for('type1',location = location))
     return render_template('location.html')
 
 @app.route("/question/<index>",methods=['POST','GET'])
@@ -142,6 +139,7 @@ def question(index):
             result_name = str(result)[1:-1]
             filename = result_name+'.xlsx'
             data = read_file(filename)
+            print("type",type(data),data)
             return redirect(url_for('jobone',index = 0))
     return render_template("question.html", myData=myData,id=id)
 
