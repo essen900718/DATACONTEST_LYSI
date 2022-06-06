@@ -80,6 +80,10 @@ def jobone(index):
 
 @app.route("/")
 def index():
+    global loc,result_name,data
+    loc = ""
+    result_name = ""
+    data = ""
     return render_template("index.html")
 
 @app.route("/generic")
