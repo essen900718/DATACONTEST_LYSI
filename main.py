@@ -52,6 +52,7 @@ lng_lat = {
 loc = ""
 result_name = ""
 data = ""
+
 def read_file(filename):
     data = pandas.read_excel(filename, header=0)
     score_list=[]
@@ -70,7 +71,6 @@ def read_file(filename):
 app = Flask(__name__)
 @app.route("/jobone/<index>")
 def jobone(index):
-    global loc
     print(index)
     id = int(index)
     myData = data.values[id]
@@ -88,8 +88,16 @@ def generic():
 def elements():
     return render_template("elements.html")
 
+# @app.route("/type",methods=['POST','GET'])
+# def type():
+#     return render_template("type.html")
+
 @app.route("/type",methods=['POST','GET'])
 def type():
+    global loc
+    if request.method == "GET":
+        loc = request.url.split('=')[1]
+        print("location",loc)
     return render_template("type.html")
 
 @app.route("/select")
@@ -104,11 +112,11 @@ def select():
 @app.route('/location',methods=['POST','GET'])
 def location():
     #request_method = request.method
-    global loc
+    # global loc
     if request.method == "POST":
         location = request.form['location']
-        loc = request.form['location']
-        print("location",loc)
+        # loc = request.form['location']
+        # print("location",loc)
         return redirect(url_for('type',location = location))
     return render_template('location.html')
 
