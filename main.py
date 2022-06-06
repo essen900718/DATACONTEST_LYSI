@@ -1,4 +1,5 @@
 # -*- coding:UTF-8 -*-
+from asyncore import read
 from flask import Flask, render_template,request,redirect,url_for
 import pandas
 import joblib
@@ -43,9 +44,24 @@ lng_lat = {
 '花蓮縣':  [121.3542  ,23.7569 ],
 '嘉義市':  [120.4473  ,23.47545], 
 '台東縣':  [120.9876  ,22.98461], 
+'金門縣':  [118.3186  ,24.43679], 
+'澎湖縣':  [119.6151  ,23.56548], 
+'連江縣':  [119.5397  ,26.19737]
 }
+
 loc = ""
 result_name = ""
+data = ""
+def read_file(filename):
+    data = pandas.read_excel(filename, header=0)
+    score_list=[]
+    for i in range(len(data.values)):
+        data_loc = data.values[i][6]
+        s = score(lng_lat[loc][0],lng_lat[loc][1],lng_lat[data_loc[0:3]][0],lng_lat[data_loc[0:3]][1])
+        score_list.append(s)
+    data["score"] = score_list
+    data = data.sort_values(by=['score'],ascending=False)
+    return data
 # for i in knowledge:
 #     a = random.randint(0,1)
 #     knowledge[i].append(a)
@@ -57,19 +73,6 @@ def jobone(index):
     global loc
     print(index)
     id = int(index)
-    filename = 'job_test.csv'
-    data = pandas.read_csv(filename, header=0)
-
-    score_list=[]
-    # print("Before",data.head(5))
-    for i in range(len(data.values)):
-        data_loc = data.values[i][6]
-        s = score(lng_lat[loc][0],lng_lat[loc][1],lng_lat[data_loc[0:3]][0],lng_lat[data_loc[0:3]][1])
-        score_list.append(s)
-        # print(s)
-    data["score"] = score_list
-    data = data.sort_values(by=['score'],ascending=False)
-    # print("After",data.head(5))
     myData = data.values[id]
     return render_template("job_test.html", myData=myData,id=id)
 
@@ -116,17 +119,21 @@ def q(index):
     filename = 'question.xlsx'
     question = pandas.read_excel(filename, header=0)
     myData = question.values[id]
-    global result_name
+    global result_name, data
     if request.method == "POST":
         knowledge[myData[0]].append(request.form['feature'])
         print(myData[0],knowledge[myData[0]])
         if id == 26:
             for i in knowledge:
                 if len(knowledge[i]) > 1:
-                    knowledge[i] = list(knowledge[i][0])
+                    knowledge[i] = [knowledge[i][0]]
+                elif len(knowledge[i]) < 1:
+                    knowledge[i] = [1]
             dataframe = DataFrame(knowledge)
             result = loaded_model.predict(dataframe)
-            result_name = str(result)
+            result_name = str(result)[1:-1]
+            filename = result_name+'.xlsx'
+            data = read_file(filename)
             return redirect(url_for('jobone',index = 0))
     return render_template("question.html", myData=myData,id=id)
 
