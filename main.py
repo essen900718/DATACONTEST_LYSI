@@ -2,8 +2,6 @@
 from flask import Flask, render_template,request,redirect,url_for
 import pandas
 import joblib
-import numpy as np
-import random
 from pandas import DataFrame
 import math
 
