@@ -115,6 +115,7 @@ $(function(){
 				if (document.getElementById("newtaipei").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "新北市"
 					reset()
+					select.value = "新北市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -123,6 +124,7 @@ $(function(){
 				if (document.getElementById("keelung").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "基隆市"
 					reset()
+					select.value = "基隆市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -131,6 +133,7 @@ $(function(){
 				if (document.getElementById("taipei").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "台北市"
 					reset()
+					select.value = "台北市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -139,6 +142,7 @@ $(function(){
 				if (document.getElementById("taoyuan").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "桃園市"
 					reset()
+					select.value = "桃園市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -147,6 +151,7 @@ $(function(){
 				if (document.getElementById("hsinchu").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "新竹市"
 					reset()
+					select.value = "新竹市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -155,6 +160,7 @@ $(function(){
 				if (document.getElementById("miaoli").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "苗栗縣"
 					reset()
+					select.value = "苗栗縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -163,6 +169,7 @@ $(function(){
 				if (document.getElementById("taichung").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "台中市"
 					reset()
+					select.value = "台中市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -171,6 +178,7 @@ $(function(){
 				if (document.getElementById("changhua").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "彰化縣"
 					reset()
+					select.value = "彰化縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -179,6 +187,7 @@ $(function(){
 				if (document.getElementById("nantou").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "南投縣"
 					reset()
+					select.value = "南投縣"
 					$(this).css('fill',"#901E2E");
 				}
 			}); 
@@ -187,6 +196,7 @@ $(function(){
 				if (document.getElementById("yunlin").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "雲林縣"
 					reset()
+					select.value = "雲林縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -195,6 +205,7 @@ $(function(){
 				if (document.getElementById("chiayi").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "嘉義市"
 					reset()
+					select.value = "嘉義市"
 					$(this).css('fill',"#901E2E");
 				}
 			}); 
@@ -203,6 +214,7 @@ $(function(){
 				if (document.getElementById("tainan").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "台南市"
 					reset()
+					select.value = "台南市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -211,6 +223,7 @@ $(function(){
 				if (document.getElementById("kaohsiung").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "高雄市"
 					reset()
+					select.value = "高雄市"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -219,6 +232,7 @@ $(function(){
 				if (document.getElementById("pingtung").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "屏東縣"
 					reset()
+					select.value = "屏東縣"
 					$(this).css('fill',"#901E2E");
 				}
 			}); 
@@ -227,6 +241,7 @@ $(function(){
 				if (document.getElementById("yilan").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "宜蘭縣"
 					reset()
+					select.value = "宜蘭縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -235,6 +250,7 @@ $(function(){
 				if (document.getElementById("hualien").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "花蓮縣"
 					reset()
+					select.value = "花蓮縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
@@ -243,11 +259,19 @@ $(function(){
 				if (document.getElementById("taitung").style.fill == "rgb(227, 185, 44)"){
 					select.innerText = "台東縣"
 					reset()
+					select.value = "台東縣"
 					$(this).css('fill',"#901E2E");
 				}
 			});
+
+			
 		}
 	);
 
 });
+
+function getVal() {
+	var val = document.querySelector('input').value;
+	console.log(val);
+}
 

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>勞有所依 LYSI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/twmap.css') }}"/>
+		<noscript></noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}"/></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				
+					<header id="header" class="alt">
+						<h1>Question{{id}}</h1>
+					</header>
+                    
+                    <!-- <fieldset>
+                        <form>
+                          <input type="radio" id="huey" name="feature" value="1" style="background: #901E2E;"
+                                 checked>
+                          <label for="huey">{{myData[0]}}</label>
+                          <input type="radio" id="dewey" name="feature" value="0" style="background: #901E2E;">
+                          <label for="dewey" >{{myData[1]}}</label>
+                        <input type="submit">
+                        </form>
+                    </fieldset> -->
+                    <div id="main">
+                        <section id="content" class="main">
+                            <div class="col-6 col-12-medium">
+                                <ul class="actions stacked">
+                                    <form method="POST" action="/q/{{id}}">
+                                        <input type="radio" id="huey" name="feature" value="1" style="background: #901E2E;"
+                                               checked>
+                                        <label for="huey">{{myData[1]}}</label>
+                                  
+                                        <input type="radio" id="dewey" name="feature" value="0" style="background: #901E2E;">
+                                        <label for="dewey" >{{myData[2]}}</label>
+
+                                        <input type="submit">
+                                    </form>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- <form method="POST" action="/location">
+                        <input type="radio" id="louie" name="drone" value="louie">
+                        <label for="louie">{{myData[0]}}</label>
+                        <input type="radio" id="louie" name="drone" value="louie">
+                        <label for="louie">{{myData[0]}}</label>
+                    </form> -->
+
+				<!-- Footer -->
+				<footer class="major" id="none">
+					<ul class="actions special">
+						<li><a href="/q/{{id+1}}" class="button primary">下一頁</a></li>
+					</ul>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/twmap.js') }}"></script>
+	</body>
+</html>

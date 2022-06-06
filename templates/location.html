@@ -87,10 +87,11 @@
 										<input type="button" id="none" value="Reset">
 										<input type="button" name="send" value="送出">
 									</form> -->
-									<span>{{request_method}}</span>
 									<form method="POST" action="/location">
 										<!-- <label>abc</label> -->
-										<input type="text" placeholder="縣市名" name="location">
+										<input type="text" id="selectLocation" placeholder="縣市名" name="location" value="">
+										<!-- <div id="selectLocation" name="location"></div> -->
+										<!-- <input type="hidden" id = "location" name="location" value=""> -->
 										<input type="submit">
 									</form>
 								</ul>
