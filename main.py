@@ -51,7 +51,7 @@ lng_lat = {
 
 loc = ""
 result_name = ""
-data = ""
+data = DataFrame({"tmp":[]})
 
 def read_file(filename):
     data = pandas.read_excel(filename, header=0)
@@ -63,6 +63,7 @@ def read_file(filename):
     data["score"] = score_list
     data = data.sort_values(by=['score'],ascending=False)
     return data
+
 # for i in knowledge:
 #     a = random.randint(0,1)
 #     knowledge[i].append(a)
@@ -75,9 +76,11 @@ def jobone(index):
     global data,result_name
     print(index)
     id = int(index)
-    if id == 0:
-        filename = result_name+'.xlsx'
-        data = read_file(filename)
+
+    # if id == 0:
+    filename = result_name+'.xlsx'
+    data = read_file(filename)
+    
     myData = data.values[id]
     return render_template("job_test.html", myData=myData,id=id)
 
@@ -86,7 +89,7 @@ def index():
     global loc,result_name,data
     loc = ""
     result_name = ""
-    data = ""
+    data = DataFrame({"tmp":[]})
     return render_template("index.html")
 
 @app.route("/generic")
