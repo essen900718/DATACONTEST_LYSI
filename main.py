@@ -88,7 +88,7 @@ def generic():
 def elements():
     return render_template("elements.html")
 
-@app.route("/type")
+@app.route("/type",methods=['POST','GET'])
 def type():
     return render_template("type.html")
 
