@@ -112,8 +112,8 @@ def location():
         return redirect(url_for('type',location = location))
     return render_template('location.html')
 
-@app.route("/q/<index>",methods=['POST','GET'])
-def q(index):
+@app.route("/question/<index>",methods=['POST','GET'])
+def question(index):
     print(index)
     id = int(index)
     filename = 'question.xlsx'
