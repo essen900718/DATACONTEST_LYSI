@@ -72,9 +72,12 @@ def read_file(filename):
 app = Flask(__name__)
 @app.route("/jobone/<index>")
 def jobone(index):
-    global data
+    global data,result_name
     print(index)
     id = int(index)
+    if id == 0:
+        filename = result_name+'.xlsx'
+        data = read_file(filename)
     myData = data.values[id]
     return render_template("job_test.html", myData=myData,id=id)
 
@@ -138,10 +141,11 @@ def question(index):
         dataframe = DataFrame(knowledge)
         result = loaded_model.predict(dataframe)
         result_name = str(result)[1:-1]
-        filename = result_name+'.xlsx'
-        data = read_file(filename)
+        # filename = result_name+'.xlsx'
+        # data = read_file(filename)
         # print("type",type(data),data)
         return redirect(url_for('jobone',index = 0))
+        
     myData = question.values[id]
     if request.method == "POST":
         knowledge[myData[0]].append(request.form['feature'])
