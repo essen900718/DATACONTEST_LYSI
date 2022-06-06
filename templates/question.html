@@ -38,15 +38,15 @@
                         <section id="content" class="main">
                             <div class="col-6 col-12-medium">
                                 <ul class="actions stacked">
-                                    <form method="POST" action="/q/{{id}}">
+                                    <form method="POST" action="/q/{{id+1}}">
                                         <input type="radio" id="huey" name="feature" value="1" style="background: #901E2E;"
                                                checked>
                                         <label for="huey">{{myData[1]}}</label>
                                   
                                         <input type="radio" id="dewey" name="feature" value="0" style="background: #901E2E;">
                                         <label for="dewey" >{{myData[2]}}</label>
-
-                                        <input type="submit">
+                                        <br>
+                                        <input type="submit" class="button primary">
                                     </form>
                                 </ul>
                             </div>
@@ -60,11 +60,12 @@
                     </form> -->
 
 				<!-- Footer -->
-				<footer class="major" id="none">
+				<!-- <footer class="major" id="none">
 					<ul class="actions special">
 						<li><a href="/q/{{id+1}}" class="button primary">下一頁</a></li>
+                        <li><input type="submit" class="button primary"></li>
 					</ul>
-				</footer>
+				</footer> -->
 
 			</div>
 
