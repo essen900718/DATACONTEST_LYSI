@@ -122,8 +122,10 @@ def select():
 
 @app.route('/location',methods=['POST','GET'])
 def location():
+    global loc
     if request.method == "POST":
         location = request.form['location']
+        loc = location
         return redirect(url_for('type1',location = location))
     return render_template('location.html')
 
@@ -144,9 +146,9 @@ def question(index):
         dataframe = DataFrame(knowledge)
         result = loaded_model.predict(dataframe)
         result_name = str(result)[1:-1]
-        # filename = result_name+'.xlsx'
-        # data = read_file(filename)
-        # print("type",type(data),data)
+        filename = result_name+'.xlsx'
+        data = read_file(filename)
+        print("type",type(data),data)
         return redirect(url_for('jobone',index = 0))
         
     myData = question.values[id]
