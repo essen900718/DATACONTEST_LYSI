@@ -1,5 +1,6 @@
 # -*- coding:UTF-8 -*-
 from asyncore import read
+from concurrent.futures import thread
 from flask import Flask, render_template,request,redirect,url_for
 import pandas
 import joblib
@@ -168,4 +169,4 @@ def job1():
     return render_template("job1.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,threaded=True)
