@@ -78,9 +78,9 @@ def jobone(index):
     print(index)
     id = int(index)
 
-    # if id == 0:
-    filename = result_name+'.xlsx'
-    data = read_file(filename)
+    if id == 0:
+        filename = result_name+'.xlsx'
+        data = read_file(filename)
     
     myData = data.values[id]
     return render_template("job_test.html", myData=myData,id=id)

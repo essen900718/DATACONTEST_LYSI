@@ -2359,7 +2359,7 @@ input, select, textarea {
 
 	.icon.alt {
 		border-color: rgba(255, 255, 255, 0.35);
-		color: #ffffff;
+		color: #901E2E;
 	}
 
 		.icon.alt:hover {
@@ -3772,7 +3772,8 @@ input, select, textarea {
 		}
 
 /* Wrapper */
-html, body {margin: 0; height: 100%; overflow: hidden}
+/* html, body {margin: 0; height: 100%; overflow: hidden} */
+
 
 	#wrapper {
 		width: 64em;

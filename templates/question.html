@@ -37,16 +37,24 @@
                     <div id="main">
                         <section id="content" class="main">
                             <div class="col-6 col-12-medium">
-                                <ul class="actions stacked">
+                                <ul class="actions special">
                                     <form method="POST" action="/question/{{id+1}}">
-                                        <input type="radio" id="huey" name="feature" value="1" style="background: #901E2E;"
-                                               checked>
-                                        <label for="huey">{{myData[1]}}</label>
-                                  
-                                        <input type="radio" id="dewey" name="feature" value="0" style="background: #901E2E;">
-                                        <label for="dewey" >{{myData[2]}}</label>
+										<br><br>
+										<li>
+                                        	<input type="radio" id="huey" name="feature" value="1" style="background: #901E2E;"checked>
+                                        	<label for="huey">{{myData[1]}}</label>
+                                  		</li>
+										<br><br>
+										<li>
+                                        	<input type="radio" id="dewey" name="feature" value="0" style="background: #901E2E;">
+                                        	<label for="dewey" >{{myData[2]}}</label>
+										</li>
                                         <br>
-                                        <input type="submit" class="button primary">
+										<br>
+										<br>
+										<ul class="actions special">
+										<li><input type="submit" class="button primary"></li>
+										</ul>
                                     </form>
                                 </ul>
                             </div>
