@@ -6,6 +6,9 @@ import pandas
 import joblib
 from pandas import DataFrame
 import math
+import os
+import threading
+sem = threading.Semaphore()
 
 def rad(d):
    return d * math.pi / 180.0
@@ -79,8 +82,8 @@ def jobone(index):
     id = int(index)
 
     if id == 0:
-        filename = result_name+'.xlsx'
-        data = read_file(filename)
+        # filename = result_name+'.xlsx'
+        data = read_file(result_name)
     
     myData = data.values[id]
     return render_template("job_test.html", myData=myData,id=id)
@@ -101,24 +104,26 @@ def generic():
 def elements():
     return render_template("elements.html")
 
-# @app.route("/type",methods=['POST','GET'])
-# def type():
-#     global loc
-#     if request.method == "GET":
-#         loc = request.url.split('=')[1]
-#         print("location",loc)
-#     return render_template("type.html")
-
 @app.route("/type1",methods=['POST','GET'])
 def type1():
     global loc
     if request.method == "GET":
+        sem.acquire()
         loc = request.url.split('=')[1]
         print("location",loc)
+        sem.release()
     return render_template("type1.html")
 
-@app.route("/select")
+@app.route("/select",methods=['POST','GET'])
 def select():
+    global result_name
+    if request.method == "POST":
+        big = request.form.get('college-list')
+        small = request.form.get('sector-list')
+        bigjobfile = os.listdir("small")
+        smalljobfile = os.listdir("small/"+bigjobfile[int(big)])
+        result_name = "small/"+bigjobfile[int(big)]+'/'+smalljobfile[int(small)]
+        return redirect(url_for('jobone',index = 0))
     return render_template("select.html")
 
 @app.route('/location',methods=['POST','GET'])
@@ -146,9 +151,10 @@ def question(index):
                 knowledge[i] = [1]
         dataframe = DataFrame(knowledge)
         result = loaded_model.predict(dataframe)
-        result_name = str(result)[1:-1]
-        filename = result_name+'.xlsx'
-        data = read_file(filename)
+        # result_name = str(result)[1:-1]
+        # filename = result_name+'.xlsx'
+        result_name = str(result)[1:-1]+'.xlsx'
+        data = read_file(result_name)
         print("type",type(data),data)
         return redirect(url_for('jobone',index = 0))
         

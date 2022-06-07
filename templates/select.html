@@ -27,13 +27,16 @@
 					<div class="col-6 col-12-medium">
 						<ul class="actions special">
 
-						<form>
+						<form method="POST" action="/select">
 							<!--給定這id，等等需要用他填入學院資料,onchange內動到這element會呼叫裡面的方法
 							this.selectedIndex是選到第幾項的值(0開始)傳入當參數-->
-							<select id="college-list" onchange="changeCollege(this.selectedIndex)"></select>
+							<select id="college-list" onchange="changeCollege(this.selectedIndex)" name="college-list"></select>
 							<br>
 							<br>
-							<select id="sector-list"></select><!--給定這id，等等需要用他填入對應的系所資料-->
+							<select id="sector-list" name="sector-list"></select><!--給定這id，等等需要用他填入對應的系所資料-->
+							<br>
+							<br>
+							<input type="submit">
 						</form>
 
 
@@ -47,7 +50,7 @@
 							var inner="";
 							for(var i=0;i<colleges.length;i++){
 								//inner第一行就會像是 <option value=0>商學院</option>
-								inner=inner+'<option value=i>'+colleges[i]+'</option>';
+								inner=inner+'<option value="'+i+'\">'+colleges[i]+'</option>';
 							}
 							//innerHTML 賦值inner給這element屬性
 							collegeSelect.innerHTML=inner;
@@ -76,7 +79,7 @@
 								//跟剛剛一樣，製造一個字串，以html的語法填入系所的陣列
 								var Sinner="";
 								for(var i=0;i<sectors[index].length;i++){
-									Sinner=Sinner+'<option value=i>'+sectors[index][i]+'</option>';
+									Sinner=Sinner+'<option value="'+i+'\">'+sectors[index][i]+'</option>';
 								}
 								//抓到"sector-list"這select元素，修改其值
 								var sectorSelect=document.getElementById("sector-list");
