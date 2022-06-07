@@ -143,7 +143,7 @@ def question(index):
     question = pandas.read_excel(filename, header=0)
     global result_name, data
     if id == 27:
-        print("data",type(data),data)
+        sem.acquire()
         for i in knowledge:
             if len(knowledge[i]) > 1:
                 knowledge[i] = [knowledge[i][0]]
@@ -156,8 +156,9 @@ def question(index):
         result_name = str(result)[1:-1]+'.xlsx'
         data = read_file(result_name)
         print("type",type(data),data)
+        sem.release()
         return redirect(url_for('jobone',index = 0))
-        
+
     myData = question.values[id]
     if request.method == "POST":
         knowledge[myData[0]].append(request.form['feature'])
