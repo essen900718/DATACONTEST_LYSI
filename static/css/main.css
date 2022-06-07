@@ -3772,11 +3772,13 @@ input, select, textarea {
 		}
 
 /* Wrapper */
+html, body {margin: 0; height: 100%; overflow: hidden}
 
 	#wrapper {
 		width: 64em;
 		max-width: calc(100% - 4em);
 		margin: 0 auto;
+		font-size: 1.0vw;
 	}
 
 		@media screen and (max-width: 480px) {
