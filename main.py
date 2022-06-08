@@ -83,7 +83,8 @@ def jobone(index,location,result_name):
         id = int(index)
         if result_name.find("small")>=0:
             filename = result_name[0:5]+'/'+result_name[5:result_name.find("job")]+'/'+result_name[result_name.find("job"):]
-        filename = result_name
+        else:
+            filename = result_name
         # if id == 0:
         # filename = result_name+'.xlsx'
         data = read_file(filename)
