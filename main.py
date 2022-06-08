@@ -130,6 +130,7 @@ def select():
         smalljobfile = os.listdir("small/"+bigjobfile[int(big)])
         result_name = "small"+bigjobfile[int(big)]+smalljobfile[int(small)]
         # data = read_file(result_name)
+        print("result_name = ",result_name)
         sem.release()
         return redirect(url_for('jobone',index = 0,location = loc,result_name=result_name))
     return render_template("select.html")
