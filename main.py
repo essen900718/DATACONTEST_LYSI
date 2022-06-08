@@ -75,20 +75,22 @@ def read_file(filename):
 # result = loaded_model.predict(dataframe)
 
 app = Flask(__name__)
-@app.route("/jobone/<index>/<location>")
-def jobone(index,location):
+@app.route("/jobone/<index>/<location>/<result_name>")
+def jobone(index,location,result_name):
     # sem.acquire()
     if request.method == "GET":
-        global data,result_name
         print(index)
         id = int(index)
-        if id == 0:
-            #filename = result_name+'.xlsx'
-            data = read_file(result_name)
+        if result_name.find("small")>=0:
+            filename = result_name[0:5]+'/'+result_name[5:result_name.find("job")]+'/'+result_name[result_name.find("job"):]
+        filename = result_name
+        # if id == 0:
+        # filename = result_name+'.xlsx'
+        data = read_file(filename)
 
         myData = data.values[id]
         # sem.release()
-    return render_template("job_test.html", myData=myData,id=id, location = location)
+    return render_template("job_test.html", myData=myData,id=id, location = location,result_name=result_name)
 
 @app.route("/")
 def index():
@@ -125,10 +127,10 @@ def select():
         small = request.form.get('sector-list')
         bigjobfile = os.listdir("small")
         smalljobfile = os.listdir("small/"+bigjobfile[int(big)])
-        result_name = "small/"+bigjobfile[int(big)]+'/'+smalljobfile[int(small)]
-        data = read_file(result_name)
+        result_name = "small"+bigjobfile[int(big)]+smalljobfile[int(small)]
+        # data = read_file(result_name)
         sem.release()
-        return redirect(url_for('jobone',index = 0,location = loc))
+        return redirect(url_for('jobone',index = 0,location = loc,result_name=result_name))
     return render_template("select.html")
 
 @app.route('/location',methods=['POST','GET'])
@@ -162,18 +164,18 @@ def question(index,location):
         # result_name = str(result)[1:-1]
         # filename = result_name+'.xlsx'
         result_name = str(result)[1:-1]+'.xlsx'
-        data = read_file(result_name)
-        print("type",type(data),data)
+        # data = read_file(result_name)
+        # print("type",type(data),data)
         # sem.release()
-        return redirect(url_for('jobone',index = 0,location = location))
+        return redirect(url_for('jobone',index = 0,location = location,result_name=result_name))
 
-    myData = question.values[id]
+    myData = question.values[id-1]
+    print(myData)
     if request.method == "POST":
-        knowledge[myData[0]].append(request.form['feature'])
-        # print(myData[0],knowledge[myData[0]])
         print(id)
+        print(myData[0])
         knowledge[myData[0]].append(request.form['feature'])
-
+        print(knowledge)
     return render_template("question.html", myData=myData,id=id,location = location)
 
 # @app.route("/job2")
