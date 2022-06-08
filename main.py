@@ -75,18 +75,20 @@ def read_file(filename):
 # result = loaded_model.predict(dataframe)
 
 app = Flask(__name__)
-@app.route("/jobone/<index>")
-def jobone(index):
-    global data,result_name
-    print(index)
-    id = int(index)
+@app.route("/jobone/<index>/<location>")
+def jobone(index,location):
+    # sem.acquire()
+    if request.method == "GET":
+        global data,result_name
+        print(index)
+        id = int(index)
+        if id == 0:
+            #filename = result_name+'.xlsx'
+            data = read_file(result_name)
 
-    if id == 0:
-        # filename = result_name+'.xlsx'
-        data = read_file(result_name)
-    
-    myData = data.values[id]
-    return render_template("job_test.html", myData=myData,id=id)
+        myData = data.values[id]
+        # sem.release()
+    return render_template("job_test.html", myData=myData,id=id, location = location)
 
 @app.route("/")
 def index():
@@ -96,13 +98,13 @@ def index():
     # data = DataFrame({"tmp":[]})
     return render_template("index.html")
 
-@app.route("/generic")
-def generic():
-    return render_template("generic.html")
+# @app.route("/generic")
+# def generic():
+#     return render_template("generic.html")
 
-@app.route("/elements")
-def elements():
-    return render_template("elements.html")
+# @app.route("/elements")
+# def elements():
+#     return render_template("elements.html")
 
 @app.route("/type1",methods=['POST','GET'])
 def type1():
@@ -112,38 +114,43 @@ def type1():
         loc = request.url.split('=')[1]
         print("location",loc)
         sem.release()
-    return render_template("type1.html")
+    return render_template("type1.html",location=loc)
 
 @app.route("/select",methods=['POST','GET'])
 def select():
-    global result_name
     if request.method == "POST":
+        sem.acquire()
+        global result_name,data
         big = request.form.get('college-list')
         small = request.form.get('sector-list')
         bigjobfile = os.listdir("small")
         smalljobfile = os.listdir("small/"+bigjobfile[int(big)])
         result_name = "small/"+bigjobfile[int(big)]+'/'+smalljobfile[int(small)]
-        return redirect(url_for('jobone',index = 0))
+        data = read_file(result_name)
+        sem.release()
+        return redirect(url_for('jobone',index = 0,location = loc))
     return render_template("select.html")
 
 @app.route('/location',methods=['POST','GET'])
 def location():
     global loc
     if request.method == "POST":
+        sem.acquire()
         location = request.form['location']
         loc = location
+        sem.release()
         return redirect(url_for('type1',location = location))
     return render_template('location.html')
 
-@app.route("/question/<index>",methods=['POST','GET'])
-def question(index):
+@app.route("/question/<index>/<location>",methods=['POST','GET'])
+def question(index,location):
     print(index)
     id = int(index)
     filename = 'question.xlsx'
     question = pandas.read_excel(filename, header=0)
-    global result_name, data
+    # global result_name, data
     if id == 27:
-        sem.acquire()
+        # sem.acquire()
         for i in knowledge:
             if len(knowledge[i]) > 1:
                 knowledge[i] = [knowledge[i][0]]
@@ -151,13 +158,14 @@ def question(index):
                 knowledge[i] = [1]
         dataframe = DataFrame(knowledge)
         result = loaded_model.predict(dataframe)
+        global result_name, data
         # result_name = str(result)[1:-1]
         # filename = result_name+'.xlsx'
         result_name = str(result)[1:-1]+'.xlsx'
         data = read_file(result_name)
         print("type",type(data),data)
-        sem.release()
-        return redirect(url_for('jobone',index = 0))
+        # sem.release()
+        return redirect(url_for('jobone',index = 0,location = location))
 
     myData = question.values[id]
     if request.method == "POST":
@@ -165,15 +173,16 @@ def question(index):
         # print(myData[0],knowledge[myData[0]])
         print(id)
         knowledge[myData[0]].append(request.form['feature'])
-    return render_template("question.html", myData=myData,id=id)
 
-@app.route("/job2")
-def job2():
-    return render_template("job2.html")
+    return render_template("question.html", myData=myData,id=id,location = location)
 
-@app.route("/job1")
-def job1():
-    return render_template("job1.html")
+# @app.route("/job2")
+# def job2():
+#     return render_template("job2.html")
+
+# @app.route("/job1")
+# def job1():
+#     return render_template("job1.html")
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=True)
