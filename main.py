@@ -1,4 +1,4 @@
-# -*- coding:UTF-8 -*-
+ # -*- coding:UTF-8 -*-
 from asyncore import read
 from concurrent.futures import thread
 from flask import Flask, render_template,request,redirect,url_for
@@ -123,16 +123,13 @@ def type1():
 def select():
     if request.method == "POST":
         sem.acquire()
-        global result_name,data,loc
+        global result_name,data
         big = request.form.get('college-list')
         small = request.form.get('sector-list')
         bigjobfile = os.listdir("small")
         smalljobfile = os.listdir("small/"+bigjobfile[int(big)])
         result_name = "small"+bigjobfile[int(big)]+smalljobfile[int(small)]
-        # print(result_name)
-        # location = location
         # data = read_file(result_name)
-        print("result_name = ",result_name)
         sem.release()
         return redirect(url_for('jobone',index = 0,location = loc,result_name=result_name))
     return render_template("select.html")
