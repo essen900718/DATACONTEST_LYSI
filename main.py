@@ -122,7 +122,7 @@ def type1():
 @app.route("/select",methods=['POST','GET'])
 def select():
     if request.method == "POST":
-        # sem.acquire()
+        sem.acquire()
         global result_name,data,loc
         big = request.form.get('college-list')
         small = request.form.get('sector-list')
@@ -133,7 +133,7 @@ def select():
         # location = location
         # data = read_file(result_name)
         print("result_name = ",result_name)
-        # sem.release()
+        sem.release()
         return redirect(url_for('jobone',index = 0,location = loc,result_name=result_name))
     return render_template("select.html")
 
